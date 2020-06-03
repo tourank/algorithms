@@ -4,6 +4,7 @@ class Node:
         self.right = None
         self.value=value 
 
+# BST insert
 def insert(root, value):
     if root is None:
         node = Node(value)
@@ -22,10 +23,7 @@ def dfs(root):
         dfs(root.right)
         dfs(root.left)
 
-def closestValue(root, target):
-    closestVal = root.value
-    return helper(root, target, closestVal)
-def helper(tree, target, closestValue):
+def closestValue(tree, target, closestValue):
     if tree is None:
         return closestValue
     if abs(tree.value - target) < abs(closestValue - target):
@@ -83,12 +81,31 @@ def maxDepth(root, depth, maximum):
     if root is None:
         return depth
 
-    #if depth > maximum:
-        #maximum = depth
- 
     return max(maxDepth(root.left,depth+1,maximum), maxDepth(root.right, depth+1, maximum))
-    
-    
+
+def levelOrder(root):
+
+    # Create queue 
+    q = []
+    q.append(root)
+    children = []
+    nodes = []
+    children.append([root.value])
+    while len(q) != 0:
+        cur = q.pop(0)
+        if cur.left != None:
+            q.append(cur.left)
+            nodes.append(cur.left.value)
+        if cur.right != None:
+            q.append(cur.right)
+            nodes.append(cur.right.value)
+        if len(nodes) != 0:
+            children.append(nodes)
+        nodes = []
+    children.reverse()
+    return children 
+        
+
 p = Node(3)
 a = Node(9)
 b = Node(20)
@@ -99,5 +116,4 @@ p.left = a
 p.right = b
 b.left = c
 b.right = d
-
-print(maxDepthCall(p))
+print(levelOrder(p))
