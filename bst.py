@@ -71,17 +71,16 @@ def dfs_left(root, list2):
     dfs_left(root.left, list2)
     dfs_left(root.right, list2)
 
-def maxDepthCall(root):
+def minDepthCall(root):
     depth = 0
-    maximum = 0
-    return maxDepth(root, depth, maximum)
+    return minDepth(root, depth)
 
-def maxDepth(root, depth, maximum):
+def minDepth(root, depth):
     # depth = depth(root.left, depth+1) + depth(root.right, depth+1)
     if root is None:
         return depth
 
-    return max(maxDepth(root.left,depth+1,maximum), maxDepth(root.right, depth+1, maximum))
+    return min(minDepth(root.left,depth+1), minDepth(root.right, depth+1))
 
 def levelOrder(root):
 
@@ -116,4 +115,4 @@ p.left = a
 p.right = b
 b.left = c
 b.right = d
-print(levelOrder(p))
+print(minDepthCall(p))
