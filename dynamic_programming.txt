@@ -1,0 +1,9 @@
+## max coins ##
+
+min(numOfCoins[amount], 1 + numOfCoins[amount - denom])
+
+## max subset sum no adjacents ##
+
+maxSums[i] = max ( max_sums[i-1], max_sums[i-2] + array[i] )
+
+

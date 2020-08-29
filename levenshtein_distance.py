@@ -5,4 +5,13 @@
 
 def levenshtein_distance(str1, str2):
 
+    row_length = len(str1)
+    col_length = len(str2)
+
+    edits = [[0 for col in range(col_length)] for row in range(row_length)]
+
+    print(edits)
+
+
+print(levenshtein_distance("abc", "yabd"))
 
