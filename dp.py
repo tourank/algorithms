@@ -37,9 +37,37 @@ def max_subarray(nums):
 
     return global_max 
 
+def max_profit(prices):
 
-        
-print(max_subarray([-2,1,-3,4,-1,2,1,-5,4]))
-#print(max_subarray([3,5,-9,1,3,-2,3,4,7,2,-9,6,3,1,-5,4]))
-       
+    min_price = float("inf") 
+    max_price = 0
+    index = 0
+    for i in range(len(prices)):
+        if prices[i] < min_price:
+            min_price = prices[i]
 
+        else:
+            max_price = max(max_price, prices[i] - min_price)
+
+    return max_price
+
+def house_robber(nums):
+    # keep track of cur_max and prev_max 
+    # loop over array at each i check if i + prev_max > cur_max. if so then update cur_max and prev_max
+
+    cur_max = max(nums[0], nums[1])
+    prev_max = min(nums[0], nums[1])
+    total = 0
+
+    for i in range(2, len(nums)):
+
+        total = max(cur_max, prev_max + nums[i])
+        prev_max = cur_max
+        cur_max = total
+
+    return cur_max
+
+   print(house_robber([2,7,9,3,1]))
+print(house_robber([1,2,3,1]))
+
+    
