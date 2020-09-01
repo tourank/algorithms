@@ -1,3 +1,32 @@
+import math
+
+def combination_sum(nums, target):
+    sols = [0] * target
+    sols[0] = 1
+    for i in range(1,len(sols)):
+        sols[i] = sols[i-1] + math.pow(2,i)
+
+    return int(sols[target-2])
+
+print(combination_sum([1,2,3,4], 5))
+
+def min_path_sum(grid):
+
+    for row in range(len(grid)-1, -1, -1):
+        for col in range(len(row)-1, -1, -1):
+
+            cost += min(grid[row-1][col], grid[row][col-1])
+
+
+def min_cost_stairs(steps):
+
+    cost = 0
+    for i in range(2,len(steps)):
+        cost[i] += min(steps[i-1], steps[i-2])
+
+    return min(cost[len(steps)-1], cost[len(steps)-2])
+
+
 def climb_stairs(n):
 
     if n == 1:
@@ -67,7 +96,4 @@ def house_robber(nums):
 
     return cur_max
 
-   print(house_robber([2,7,9,3,1]))
-print(house_robber([1,2,3,1]))
-
-    
+       
